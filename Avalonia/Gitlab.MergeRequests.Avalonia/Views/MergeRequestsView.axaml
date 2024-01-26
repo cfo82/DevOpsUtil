@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevOpsUtil.Gitlab.MergeRequests.Avalonia.ViewModels"
+             x:Class="DevOpsUtil.Gitlab.MergeRequests.Avalonia.Views.MergeRequestsView"
+             x:DataType="vm:MergeRequestsViewModel"
+             UserControl.Name="{Binding Name}">
+    <Grid>
+        <ListBox ItemsSource="{Binding MergeRequests}" Background="Transparent">
+            <ListBox.Styles>
+                <!-- Give the ListBoxItems a fixed with of 100 and right-align them -->
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.Styles>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Border Grid.ColumnSpan="2" Background="LightCoral"
+                                IsVisible="{Binding NotApprovedByMe}" />
+                        <Border Grid.ColumnSpan="2" Background="LightYellow"
+                                IsVisible="{Binding ApprovedByMe}" />
+
+                        <Grid Margin="4,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="24" />
+                                <ColumnDefinition Width="350" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Project}" Margin="0,0,10,0" />
+                            <Button Grid.Column="1" Command="{Binding OpenUrlCommand}" CommandParameter="{Binding Uri}" Margin="0,0,4,0" Padding="0"
+                                    Background="Transparent" IsVisible="{Binding HasUri}">
+                                <Image Source="/Assets/hyperlink.png" Width="16" Height="16"/>
+                            </Button>
+                            <TextBlock Grid.Column="2" Text="{Binding Title}" Margin="0,0,10,0" TextWrapping="Wrap" />
+
+                            <ItemsControl Grid.Column="3" ItemsSource="{Binding Reviewers}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                          Background="Transparent" VerticalAlignment="Top">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" Background="Transparent" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" Margin="4,0,2,0" />
+                                            <Image Source="/Assets/ok.png" Width="12" Height="12" IsVisible="{Binding HasApproved}" />
+                                            <TextBlock Text=", " IsVisible="{Binding NotLastReviewer}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

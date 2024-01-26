@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:vm="using:DevOpsUtil.BuildStatus.Avalonia.ViewModels"
+              x:Class="DevOpsUtil.BuildStatus.Avalonia.Views.ErrorView"
+              x:DataType="vm:ErrorViewModel">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="White" Opacity="0.7"/>
+        <Border Grid.Row="1" Background="LightCoral" VerticalAlignment="Center" MaxHeight="400">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding ErrorText}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20"/>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="2" Background="White" Opacity="0.7"/>
+    </Grid>
+</UserControl>

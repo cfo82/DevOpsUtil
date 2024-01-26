@@ -1,0 +1,29 @@
+query QueryPipelines($rootGroup: ID!, $pipelineRef: String) {
+    group (fullPath:$rootGroup) {
+        id
+        name
+
+        projects(includeSubgroups:true) {
+            nodes {
+                name
+
+                pipelines(ref:$pipelineRef,first:1) {
+                    nodes {
+                        id
+                        name
+                        status
+                        ref
+                        createdAt
+
+                        jobs {
+                            nodes {
+                                name
+                                status
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

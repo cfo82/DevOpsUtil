@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevOpsUtil.Gitlab.Pipelines.Avalonia.ViewModels"
+             x:Class="DevOpsUtil.Gitlab.Pipelines.Avalonia.Views.PipelineView"
+             x:DataType="vm:PipelineViewModel">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border Background="LightYellow" BorderBrush="LightSlateGray" BorderThickness="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    CornerRadius="4,0,0,4" Margin="1,1,0,1"
+                    IsVisible="{Binding IsOld}" />
+            <Border Background="LightGreen" BorderBrush="LightSlateGray" BorderThickness="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    CornerRadius="4,0,0,4" Margin="1,1,0,1"
+                    IsVisible="{Binding IsNotOld}" />
+            <TextBlock Grid.Column="0" Text="{Binding Age}" Margin="4,0" VerticalAlignment="Center"
+                       HorizontalAlignment="Right" />
+        </Grid>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray"
+                BorderBrush="LightSlateGray" BorderThickness="0,1,0,1" Margin="0,1,0,1" />
+        <Button Grid.Column="1" Command="{Binding OpenUrlCommand}" CommandParameter="{Binding Uri}" Margin="4,0,0,0" Padding="0,1,0,1"
+                IsVisible="{Binding HasUri}" Background="Transparent" VerticalAlignment="Center">
+            <Image Source="/Assets/hyperlink.png" Width="16" Height="16"/>
+        </Button>
+        <TextBlock Grid.Column="2" Text="{Binding Ref}" VerticalAlignment="Center" Margin="4,0" />
+        <Border Grid.Column="3" Background="LightGray" BorderBrush="LightSlateGray"
+                BorderThickness="1" CornerRadius="0,4,4,0" Margin="0,1,1,1">
+            <ItemsControl ItemsSource="{Binding Jobs}" Background="Transparent" Margin="4,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="0, 1, 4, 1" />
+                            <Image Grid.Column="1" Source="/Assets/ok.png" Width="18" Height="18"
+                                   IsVisible="{Binding WasSuccessful}"
+                                   Margin="1" />
+                            <Image Grid.Column="1" Source="/Assets/alert.png" Width="18"
+                                   Height="18"
+                                   IsVisible="{Binding HasFailed}"
+                                   Margin="1" />
+                            <Image Grid.Column="1" Source="/Assets/refresh.png" Width="18"
+                                   Height="18"
+                                   IsVisible="{Binding IsRunning}"
+                                   Margin="1" />
+                            <Path Grid.Column="2" Stroke="LightSlateGray" StrokeThickness="1"
+                                  Data="M 0 0 L 5 10 L 0 20"
+                                  IsVisible="{Binding IsNotLast}"
+                                  Margin="4,0,4,0" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </Grid>
+</UserControl>

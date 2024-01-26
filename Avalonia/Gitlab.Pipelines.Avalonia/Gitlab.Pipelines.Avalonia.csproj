@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<RootNamespace>DevOpsUtil.Gitlab.Pipelines.Avalonia</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Update="**\*.xaml.cs">
+            <DependentUpon>%(Filename)</DependentUpon>
+        </Compile>
+        <Compile Update="**\*.axaml.cs">
+            <DependentUpon>%(Filename)</DependentUpon>
+        </Compile>
+        <AvaloniaResource Include="**\*.xaml">
+            <SubType>Designer</SubType>
+        </AvaloniaResource>
+        <AvaloniaResource Include="Assets\*"/>
+        <Compile Update="Views\MergeRequestsView.axaml.cs">
+          <DependentUpon>MergeRequestsView.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\ToolbarView.axaml.cs">
+          <DependentUpon>ToolbarView.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\PipelineView.axaml.cs">
+          <DependentUpon>PipelineView.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\ProjectView.axaml.cs">
+          <DependentUpon>ProjectView.axaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <!--<EmbeddedResource Include="**\*.xaml">
+          <SubType>Designer</SubType>
+        </EmbeddedResource>-->
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.0.5" />
+        <!--<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />-->
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+        <PackageReference Include="Avalonia.LinuxFramebuffer" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
+        <PackageReference Include="Prism.Avalonia" Version="8.1.97.11000" />
+        <PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\Services\Gitlab.Pipelines\Gitlab.Pipelines.csproj" />
+      <ProjectReference Include="..\Avalonia.Core\Avalonia.Core.csproj" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prismRegions="clr-namespace:Prism.Regions;assembly=Prism.Avalonia"
+        xmlns:vm="using:DevOpsUtil.BuildStatus.Avalonia.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DevOpsUtil.BuildStatus.Avalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="DevOps Utility">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" prismRegions:RegionManager.RegionName="Region_Toolbar"/>
+        <TabControl Grid.Row="1" prismRegions:RegionManager.RegionName="Region_DevOpsPages"/>
+        <ContentControl Grid.Row="1" prismRegions:RegionManager.RegionName="Region_Error" IsVisible="{Binding HasError}"/>
+        <ContentControl Grid.Row="1" prismRegions:RegionManager.RegionName="Region_Refreshing" IsVisible="{Binding IsRefreshing}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+<Project>
+    <PropertyGroup>
+        <Authors>Christian Oberholzer</Authors>
+        <Nullable>enable</Nullable>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+        <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Custom.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>        
+    </ItemGroup>
+</Project>

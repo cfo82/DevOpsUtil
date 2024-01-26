@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>DevOpsUtil.BuildStatus.Wpf</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ControlzEx" Version="6.0.0"/>
+		<PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0"/>
+		<PackageReference Include="MahApps.Metro" Version="3.0.0-alpha0457"/>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+		<PackageReference Include="Prism.DryIoc" Version="8.1.97"/>
+		<PackageReference Include="Serilog" Version="3.1.1"/>
+		<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0"/>
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0"/>
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1"/>
+		<PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0"/>
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Services\BuildStatus.Core\BuildStatus.Core.csproj"/>
+		<ProjectReference Include="..\..\Services\Core.Windows\Core.Windows.csproj" />
+		<ProjectReference Include="..\..\Services\Gitlab.Core\Gitlab.Core.csproj"/>
+		<ProjectReference Include="..\Gitlab.MergeRequests.Wpf\Gitlab.MergeRequests.Wpf.csproj"/>
+		<ProjectReference Include="..\Gitlab.Pipelines.Wpf\Gitlab.Pipelines.Wpf.csproj"/>
+		<ProjectReference Include="..\Wpf.Core\Wpf.Core.csproj"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Configuration.json"/>
+		<Content Include="Configuration.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Images\alert.ico"/>
+		<Resource Include="Images\alert.png"/>
+		<Resource Include="Images\AppIcon.ico"/>
+		<Resource Include="Images\hyperlink.png"/>
+		<Resource Include="Images\if_arrow_refresh_32.png"/>
+		<Resource Include="Images\if_arrow_refresh_128.png"/>
+		<Resource Include="Images\if_arrow_up_32.png"/>
+		<Resource Include="Images\if_arrow_up_32_gray.png"/>
+		<Resource Include="Images\if_clock yellow_10410.png"/>
+		<Resource Include="Images\ok.ico"/>
+		<Resource Include="Images\ok.png"/>
+		<Resource Include="Images\old.png"/>
+		<Resource Include="Images\refresh.png"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\MainWindow.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<XamlRuntime>Wpf</XamlRuntime>
+			<SubType>Designer</SubType>
+		</Page>
+	</ItemGroup>
+
+</Project>

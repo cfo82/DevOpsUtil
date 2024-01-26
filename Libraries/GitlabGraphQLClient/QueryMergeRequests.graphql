@@ -1,0 +1,51 @@
+query QueryMergeRequests($rootGroup: ID!) {
+    group (fullPath:$rootGroup) {
+        id
+        name
+
+        projects(includeSubgroups:true) {
+            nodes {
+                name
+
+                mergeRequests(state:opened) {
+                    nodes {
+                        id
+                        title
+                        webUrl
+                        author {
+                            id
+                            name
+                            username
+                        }
+                        assignees {
+                            nodes {
+                                id
+                                name
+                                username
+                            }
+                        }
+                        project {
+                            id
+                            name
+                        }
+                        state
+                        reviewers {
+                            nodes {
+                                id
+                                name
+                                username
+                            }
+                        }
+                        approvedBy {
+                            nodes {
+                                id
+                                name
+                                username
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

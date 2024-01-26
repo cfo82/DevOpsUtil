@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:DevOpsUtil.Gitlab.Pipelines.Avalonia.ViewModels"
+             xmlns:views="clr-namespace:DevOpsUtil.Gitlab.Pipelines.Avalonia.Views"
+             x:Class="DevOpsUtil.Gitlab.Pipelines.Avalonia.Views.ProjectView"
+             x:DataType="vm:ProjectViewModel">
+    <Grid>
+        <Border Background="LightCoral" IsVisible="{Binding HasFailed}" />
+        <Border Background="LightGreen" IsVisible="{Binding WasSuccessful}" />
+        <Border Background="LightSkyBlue" IsVisible="{Binding IsRunning}" />
+        <Border Background="LightYellow" IsVisible="{Binding IsIgnored}" />
+
+        <Grid Margin="4,2, 4, 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+           
+            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="0, 0, 6, 0" />
+            
+            <ItemsControl Grid.Column="1" ItemsSource="{Binding Pipelines}" Background="Transparent">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <views:PipelineView DataContext="{Binding .}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+</UserControl>

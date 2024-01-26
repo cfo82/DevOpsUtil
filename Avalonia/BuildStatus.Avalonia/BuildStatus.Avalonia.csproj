@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<RootNamespace>DevOpsUtil.BuildStatus.Avalonia</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.0.5"/>
+		<PackageReference Include="Avalonia.Desktop" Version="11.0.5"/>
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5"/>
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5"/>
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5"/>
+		<PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.10.3"/>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
+		<PackageReference Include="Prism.Avalonia" Version="8.1.97.11000"/>
+		<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.11000"/>
+		<PackageReference Include="Serilog" Version="3.1.1"/>
+		<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0"/>
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0"/>
+		<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1"/>
+		<PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0"/>
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="appsettings.json"/>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Avalonia.Core\Avalonia.Core.csproj"/>
+		<ProjectReference Include="..\Gitlab.MergeRequests.Avalonia\Gitlab.MergeRequests.Avalonia.csproj"/>
+		<ProjectReference Include="..\Gitlab.Pipelines.Avalonia\Gitlab.Pipelines.Avalonia.csproj"/>
+		<ProjectReference Include="..\..\Services\Core\Core.csproj"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Views\RefreshView.axaml.cs">
+			<DependentUpon>RefreshView.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Views\ErrorView.axaml.cs">
+			<DependentUpon>ErrorView.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Update="Views\MainWindow.axaml.cs">
+			<DependentUpon>MainWindow.axaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:vm="using:DevOpsUtil.BuildStatus.Avalonia.ViewModels"
+              x:Class="DevOpsUtil.BuildStatus.Avalonia.Views.ToolbarView"
+              x:DataType="vm:ToolbarViewModel">
+    <StackPanel Orientation="Horizontal">
+        <ToggleButton>
+            <Grid>
+                <Image Source="/Assets/if_arrow_up_32.png" Width="32" Height="32"/>
+                <!--<Image Source="/Assets/if_arrow_up_32_gray.png" Width="32" Height="32"/>-->
+            </Grid>
+        </ToggleButton>
+        <Button Command="{Binding RefreshCommand}">
+            <Image Source="/Assets/if_arrow_refresh_32.png" Width="32" Height="32" />
+        </Button>
+    </StackPanel>
+</UserControl>
