@@ -5,6 +5,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
+using DevOpsUtil.AzureDevOps.Core.Services;
+using DevOpsUtil.AzureDevOps.Pipelines.Wpf;
 using DevOpsUtil.BuildStatus.Wpf.Adapter;
 using DevOpsUtil.BuildStatus.Wpf.Contracts;
 using DevOpsUtil.BuildStatus.Wpf.Services;
@@ -78,6 +81,7 @@ public partial class App : PrismApplication
         containerRegistry.Register<IUiDispatcherService, UiDispatcherService>();
         containerRegistry.RegisterSingleton<IErrorHandler, ErrorHandler>();
         containerRegistry.Register<IBrowserService, BrowserService>();
+        containerRegistry.RegisterSingleton<IAzureDevOpsSettingsService, AzureDevOpsSettingsService>();
         containerRegistry.RegisterSingleton<IGitlabSettingsService, GitlabSettingsService>();
         containerRegistry.RegisterSingleton<ITaskbarIconService, TaskbarIconService>();
 
@@ -98,6 +102,7 @@ public partial class App : PrismApplication
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
     {
         // Register modules
+        moduleCatalog.AddModule<AzureDevOpsPipelinesModule>();
         moduleCatalog.AddModule<GitlabPipelinesModule>();
         moduleCatalog.AddModule<GitlabMergeRequestsModule>();
 

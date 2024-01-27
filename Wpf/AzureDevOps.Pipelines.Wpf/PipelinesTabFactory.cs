@@ -1,12 +1,12 @@
-namespace DevOpsUtil.Gitlab.Pipelines.Avalonia;
+namespace DevOpsUtil.AzureDevOps.Pipelines.Wpf;
 
-using DevOpsUtil.Avalonia.Core;
+using System.Windows.Controls;
+using DevOpsUtil.AzureDevOps.Pipelines.Contracts;
+using DevOpsUtil.AzureDevOps.Pipelines.Services;
+using DevOpsUtil.AzureDevOps.Pipelines.Wpf.ViewModels;
+using DevOpsUtil.AzureDevOps.Pipelines.Wpf.Views;
 using DevOpsUtil.Core.Contracts;
-using DevOpsUtil.Gitlab.Pipelines.Avalonia.ViewModels;
-using DevOpsUtil.Gitlab.Pipelines.Avalonia.Views;
-using DevOpsUtil.Gitlab.Pipelines.Contracts;
-using DevOpsUtil.Gitlab.Pipelines.Services;
-using global::Avalonia.Controls;
+using DevOpsUtil.Wpf.Core;
 using Microsoft.Extensions.Configuration;
 using Prism.Ioc;
 
@@ -19,13 +19,13 @@ public class PipelinesTabFactory : ITabFactory
         _containerProvider = containerProvider;
     }
 
-    public UserControl CreateTab(string title, IConfigurationSection configurationSection)
+    public UserControl CreateTab(string regionName, string title, IConfigurationSection configurationSection)
     {
         var settings = PipelinesTabSettings.Load(configurationSection);
         var pipelinesServiceSettings = new PipelinesServiceSettings
         {
-            GitlabSettingsKey = settings.GitlabSettingsKey,
-            ProjectsToIgnore = settings.ProjectsToIgnore,
+            AzureDevOpsSettingsKey = settings.AzureDevOpsSettingsKey,
+            BuildDefinitionstoIgnore = settings.BuildDefinitionsToIgnore,
             BranchesToWatch = settings.BranchesToWatch,
         };
         return new PipelinesView(new PipelinesViewModel(

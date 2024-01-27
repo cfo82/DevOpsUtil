@@ -4,7 +4,7 @@ using System;
 
 public interface IErrorStateService
 {
-    event EventHandler ErrorStateChanged;
+    event EventHandler? ErrorStateChanged;
 
     bool HasError { get; }
 

@@ -1,28 +1,30 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.AzureDevOps;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Services;
 
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using DevOpsUtil.BuildStatus.Core.Interfaces;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 
 public class DefaultHttpClientFactory : IHttpClientFactory
 {
-    private readonly IConfiguration _configuration;
+    private readonly string _baseAddress;
+    private readonly string _accessToken;
 
-    public DefaultHttpClientFactory(IConfiguration configuration)
+    public DefaultHttpClientFactory(string baseAddress, string accessToken)
     {
-        _configuration = configuration;
+        _baseAddress = baseAddress;
+        _accessToken = accessToken;
     }
 
-    private string Credentials => Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(string.Format("{0}:{1}", string.Empty, _configuration.BuildAccessToken)));
+    private string Credentials => Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(string.Format("{0}:{1}", string.Empty, _accessToken)));
 
     public IHttpClient CreateClient()
     {
-        HttpClient client = null;
+        HttpClient? client = null;
 
         try
         {
-            client = new HttpClient { BaseAddress = new Uri(_configuration.BaseAddress) };
+            client = new HttpClient { BaseAddress = new Uri(_baseAddress) };
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 public class MergeRequestsTabSettings : TabSettings
 {
-    public string GitlabSettings { get; set; } = string.Empty;
+    public string GitlabSettingsKey { get; set; } = string.Empty;
 
     public static new MergeRequestsTabSettings Load(IConfigurationSection section)
     {

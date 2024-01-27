@@ -1,9 +1,9 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.AzureDevOps;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Services;
 
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using DevOpsUtil.BuildStatus.Core.Interfaces;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 
 public class DefaultHttpClient : IHttpClient
 {

@@ -7,15 +7,11 @@ using DevOpsUtil.Gitlab.Pipelines.Contracts;
 using DevOpsUtil.Gitlab.Pipelines.Services;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 public class GitlabPipelinesModule : IModule
 {
-    private readonly IRegionManager _regionManager;
-
-    public GitlabPipelinesModule(IRegionManager regionManager)
+    public GitlabPipelinesModule()
     {
-        _regionManager = regionManager;
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,6 +24,5 @@ public class GitlabPipelinesModule : IModule
 
     public void OnInitialized(IContainerProvider containerProvider)
     {
-        // _regionManager.RegisterViewWithRegion("Region_DevOpsPages", typeof(PipelinesView));
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.Interfaces;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Contracts;
 
 public interface IHttpClientFactory
 {

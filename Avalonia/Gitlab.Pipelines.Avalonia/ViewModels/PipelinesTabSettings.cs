@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 public class PipelinesTabSettings : TabSettings
 {
-    public string GitlabSettings { get; set; } = string.Empty;
+    public string GitlabSettingsKey { get; set; } = string.Empty;
 
     public string[] ProjectsToIgnore { get; init; } = Array.Empty<string>();
 

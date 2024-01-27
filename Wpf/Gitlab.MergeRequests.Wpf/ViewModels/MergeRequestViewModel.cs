@@ -19,7 +19,7 @@ public class MergeRequestViewModel : BindableBase
         IMergeRequest mergeRequest,
         MergeRequestsTabSettings settings)
     {
-        var gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettings);
+        var gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettingsKey);
 
         _browserService = browserService;
         _mergeRequest = mergeRequest;

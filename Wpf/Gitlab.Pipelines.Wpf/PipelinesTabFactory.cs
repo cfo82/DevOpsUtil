@@ -24,15 +24,14 @@ public class PipelinesTabFactory : ITabFactory
         var settings = PipelinesTabSettings.Load(configurationSection);
         var pipelinesServiceSettings = new PipelinesServiceSettings
         {
-            GitlabSettingsKey = settings.GitlabSettings,
+            GitlabSettingsKey = settings.GitlabSettingsKey,
             ProjectsToIgnore = settings.ProjectsToIgnore,
             BranchesToWatch = settings.BranchesToWatch,
         };
         return new PipelinesView(new PipelinesViewModel(
             _containerProvider.Resolve<IUiDispatcherService>(),
             _containerProvider.Resolve<IBrowserService>(),
-            _containerProvider.Resolve<IPipelinesService>((typeof(IPipelinesServiceSettings),
-                pipelinesServiceSettings)),
+            _containerProvider.Resolve<IPipelinesService>((typeof(IPipelinesServiceSettings), pipelinesServiceSettings)),
             title));
     }
 }

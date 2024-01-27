@@ -1,8 +1,8 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.AzureDevOps;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Services;
 
 using System;
 using System.Threading.Tasks;
-using DevOpsUtil.BuildStatus.Core.Interfaces;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 
 public class ErrorHttpClient : IHttpClient
 {

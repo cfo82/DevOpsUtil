@@ -10,7 +10,7 @@ using DevOpsUtil.BuildStatus.Core.Interfaces;
 using DevOpsUtil.Core.Contracts;
 using Newtonsoft.Json;
 
-public class BuildServiceProxy : IBuildServiceProxy
+/*public class BuildServiceProxy : IBuildServiceProxy
 {
     private readonly IConfiguration _configuration;
     private readonly IHttpClientFactory _httpClientFactory;
@@ -206,7 +206,7 @@ public class BuildServiceProxy : IBuildServiceProxy
 
         /*var failedDefinitions = (from def in _definitions
                                  where (!def.HasRunInstance || def.HasFailed) && !(def.IsIgnored  || def.IsDisabled)
-                                 select def).ToList();*/
+                                 select def).ToList();/
 
         var hasFailed = failedDefinitions.Any();
 
@@ -231,4 +231,4 @@ public class BuildServiceProxy : IBuildServiceProxy
 
         _trafficLightService.Color = hasFailed ? TrafficLightColor.Red : TrafficLightColor.Green;
     }
-}
+}*/

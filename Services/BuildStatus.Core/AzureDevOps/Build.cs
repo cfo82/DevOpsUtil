@@ -3,7 +3,7 @@
 using System;
 using DevOpsUtil.BuildStatus.Core.AzureDevOps.Serialization;
 
-public class Build
+/*public class Build
 {
     private readonly BuildDefinition _definition;
     private readonly BuildData _data;
@@ -77,4 +77,4 @@ public class Build
             return _data.Result;
         }
     }
-}
+}*/

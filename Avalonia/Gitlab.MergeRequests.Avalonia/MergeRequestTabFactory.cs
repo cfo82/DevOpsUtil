@@ -26,7 +26,7 @@ public class MergeRequestTabFactory : ITabFactory
         return new MergeRequestsView(new MergeRequestsViewModel(
             _containerProvider.Resolve<IBrowserService>(),
             _containerProvider.Resolve<IGitlabSettingsService>(),
-            _containerProvider.Resolve<IMergeRequestService>((typeof(IMergeRequestServiceSettings), new MergeRequestServiceSettings { GitlabSettingsKey = settings.GitlabSettings })),
+            _containerProvider.Resolve<IMergeRequestService>((typeof(IMergeRequestServiceSettings), new MergeRequestServiceSettings { GitlabSettingsKey = settings.GitlabSettingsKey })),
             title,
             settings));
     }

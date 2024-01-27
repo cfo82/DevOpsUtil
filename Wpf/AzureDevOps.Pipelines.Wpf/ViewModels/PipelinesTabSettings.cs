@@ -1,13 +1,13 @@
-namespace DevOpsUtil.Gitlab.Pipelines.Wpf.ViewModels;
+namespace DevOpsUtil.AzureDevOps.Pipelines.Wpf.ViewModels;
 
 using DevOpsUtil.Wpf.Core;
 using Microsoft.Extensions.Configuration;
 
 public class PipelinesTabSettings : TabSettings
 {
-    public string GitlabSettingsKey { get; set; } = string.Empty;
+    public string AzureDevOpsSettingsKey { get; set; } = string.Empty;
 
-    public string[] ProjectsToIgnore { get; init; } = Array.Empty<string>();
+    public string[] BuildDefinitionsToIgnore { get; init; } = Array.Empty<string>();
 
     public string[] BranchesToWatch { get; init; } = Array.Empty<string>();
 

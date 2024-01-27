@@ -1,8 +1,8 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.AzureDevOps;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Services;
 
 using System;
 using System.Net.Http;
-using DevOpsUtil.BuildStatus.Core.Interfaces;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 
 internal class DefaultHttpResponse : IHttpResponseMessage
 {

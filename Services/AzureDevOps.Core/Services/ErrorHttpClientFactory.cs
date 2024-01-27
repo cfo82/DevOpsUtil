@@ -1,6 +1,6 @@
-﻿namespace DevOpsUtil.BuildStatus.Core.AzureDevOps;
+﻿namespace DevOpsUtil.AzureDevOps.Core.Services;
 
-using DevOpsUtil.BuildStatus.Core.Interfaces;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 
 public class ErrorHttpClientFactory : IHttpClientFactory
 {

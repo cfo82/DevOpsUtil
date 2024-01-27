@@ -10,8 +10,6 @@ public class GitlabSettings
 
     public string BaseAddress { get; set; } = string.Empty;
 
-    public string GraphQLBaseAddress { get; set; } = string.Empty;
-
     public string AccessToken { get; set; } = string.Empty;
 
     public int GroupId { get; set; }

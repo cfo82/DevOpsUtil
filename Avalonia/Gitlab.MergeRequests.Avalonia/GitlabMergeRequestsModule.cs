@@ -7,15 +7,11 @@ using DevOpsUtil.Gitlab.MergeRequests.Contracts;
 using DevOpsUtil.Gitlab.MergeRequests.Services;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 public class GitlabMergeRequestsModule : IModule
 {
-    private readonly IRegionManager _regionManager;
-
-    public GitlabMergeRequestsModule(IRegionManager regionManager)
+    public GitlabMergeRequestsModule()
     {
-        _regionManager = regionManager;
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,6 +24,5 @@ public class GitlabMergeRequestsModule : IModule
 
     public void OnInitialized(IContainerProvider containerProvider)
     {
-        // _regionManager.RegisterViewWithRegion("Region_DevOpsPages", typeof(MergeRequestsView));
     }
 }

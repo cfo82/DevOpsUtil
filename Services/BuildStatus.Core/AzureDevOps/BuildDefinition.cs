@@ -6,7 +6,7 @@ using DevOpsUtil.BuildStatus.Core.AzureDevOps.Serialization;
 using DevOpsUtil.BuildStatus.Core.Interfaces;
 using Newtonsoft.Json;
 
-public class BuildDefinition : IUpdatableDefinition
+/*public class BuildDefinition : IUpdatableDefinition
 {
     private readonly IConfiguration _configuration;
     private readonly BuildDefinitionData _buildDefinitionData;
@@ -121,4 +121,4 @@ public class BuildDefinition : IUpdatableDefinition
             }
         }
     }
-}
+}*/
