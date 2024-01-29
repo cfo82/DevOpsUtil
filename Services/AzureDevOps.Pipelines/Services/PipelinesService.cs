@@ -56,7 +56,7 @@ public class PipelinesService : IPipelinesService, IRefreshable, IErrorStateProv
 
         foreach (var definition in definitions)
         {
-            _buildDefinitions.Add(new BuildDefinition(_settings, definition));
+            _buildDefinitions.Add(new BuildDefinition(_settings, _azureDevOpsSettings, definition));
         }
 
         foreach (var definition in _buildDefinitions)

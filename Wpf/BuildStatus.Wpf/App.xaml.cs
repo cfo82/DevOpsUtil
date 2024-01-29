@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using DevOpsUtil.AzureDevOps.Core.Contracts;
 using DevOpsUtil.AzureDevOps.Core.Services;
 using DevOpsUtil.AzureDevOps.Pipelines.Wpf;
+using DevOpsUtil.AzureDevOps.Releases.Wpf;
 using DevOpsUtil.BuildStatus.Wpf.Adapter;
 using DevOpsUtil.BuildStatus.Wpf.Contracts;
 using DevOpsUtil.BuildStatus.Wpf.Services;
@@ -103,6 +104,7 @@ public partial class App : PrismApplication
     {
         // Register modules
         moduleCatalog.AddModule<AzureDevOpsPipelinesModule>();
+        moduleCatalog.AddModule<AzureDevOpsReleasesModule>();
         moduleCatalog.AddModule<GitlabPipelinesModule>();
         moduleCatalog.AddModule<GitlabMergeRequestsModule>();
 

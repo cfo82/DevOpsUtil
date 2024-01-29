@@ -1,0 +1,78 @@
+<UserControl x:Class="DevOpsUtil.AzureDevOps.Releases.Wpf.Views.ReleaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converter="clr-namespace:DevOpsUtil.Wpf.Core.Converter;assembly=Wpf.Core"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border Background="LightYellow" BorderBrush="LightSlateGray" BorderThickness="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    CornerRadius="4,0,0,4" Margin="1,1,0,1"
+                    Visibility="{Binding IsOld, Converter={converter:BoolToVisibilityConverter}}" />
+            <Border Background="LightGreen" BorderBrush="LightSlateGray" BorderThickness="1"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    CornerRadius="4,0,0,4" Margin="1,1,0,1"
+                    Visibility="{Binding IsNotOld, Converter={converter:BoolToVisibilityConverter}}" />
+            <StackPanel Orientation="Horizontal" Margin="4,0" VerticalAlignment="Center" HorizontalAlignment="Right" >
+                <TextBlock Text="{Binding Age}"/>
+                <TextBlock Text=" days"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray"
+                BorderBrush="LightSlateGray" BorderThickness="0,1,0,1" Margin="0,1,0,1" />
+        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,1,0,1">
+            <Hyperlink NavigateUri="{Binding Uri}" RequestNavigate="Hyperlink_OnRequestNavigate">
+                <Image Source="/Images/hyperlink.png" Width="16" Height="16" />
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" Margin="4,0" />
+        <Border Grid.Column="3" Background="LightGray" BorderBrush="LightSlateGray"
+                BorderThickness="1" CornerRadius="0,4,4,0" Margin="0,1,1,1">
+            <ItemsControl ItemsSource="{Binding Environments}" Background="Transparent" Margin="4,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="0, 1, 4, 1" />
+                            <Image Grid.Column="1" Source="/Images/ok.png" Width="18" Height="18"
+                                   Visibility="{Binding WasSuccessful, Converter={converter:BoolToVisibilityConverter}}"
+                                   Margin="1" />
+                            <Image Grid.Column="1" Source="/Images/alert.png" Width="18"
+                                   Height="18"
+                                   Visibility="{Binding HasFailed, Converter={converter:BoolToVisibilityConverter}}"
+                                   Margin="1" />
+                            <Image Grid.Column="1" Source="/Images/refresh.png" Width="18"
+                                   Height="18"
+                                   Visibility="{Binding IsRunning, Converter={converter:BoolToVisibilityConverter}}"
+                                   Margin="1" />
+                            <Path Grid.Column="2" Stroke="LightSlateGray" StrokeThickness="1"
+                                  Data="M 0 0 L 5 10 L 0 20"
+                                  Visibility="{Binding IsNotLast, Converter={converter:BoolToVisibilityConverter}}"
+                                  Margin="4,0,4,0" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </Grid>
+</UserControl>

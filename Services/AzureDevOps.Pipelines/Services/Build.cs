@@ -1,13 +1,16 @@
 ﻿namespace DevOpsUtil.AzureDevOps.Pipelines.Services;
 
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 using DevOpsUtil.AzureDevOps.Pipelines.Contracts;
 
 public class Build : IBuild
 {
+    private readonly AzureDevOpsSettings _settings;
     private readonly Microsoft.TeamFoundation.Build.WebApi.Build _build;
 
-    public Build(Microsoft.TeamFoundation.Build.WebApi.Build build)
+    public Build(AzureDevOpsSettings settings, Microsoft.TeamFoundation.Build.WebApi.Build build)
     {
+        _settings = settings;
         _build = build;
     }
 
@@ -33,7 +36,7 @@ public class Build : IBuild
         }
     }
 
-    public Uri Uri => _build.Uri;
+    public Uri Uri => new Uri($"{_settings.BaseWebAddress}{_settings.Project}/_build/results?buildId={_build.Id}&view=results");
 
     public string SourceBranch => _build.SourceBranch;
 }

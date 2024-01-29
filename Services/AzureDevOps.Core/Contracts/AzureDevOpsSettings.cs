@@ -8,6 +8,8 @@ public class AzureDevOpsSettings
 
     public string Key { get; set; } = string.Empty;
 
+    public string BaseWebAddress { get; set; } = string.Empty;
+
     public string BaseAddress { get; set; } = string.Empty;
 
     public string Organization { get; set; } = string.Empty;

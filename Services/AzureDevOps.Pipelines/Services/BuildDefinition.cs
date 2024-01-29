@@ -3,18 +3,21 @@
 using System;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
+using DevOpsUtil.AzureDevOps.Core.Contracts;
 using DevOpsUtil.AzureDevOps.Pipelines.Contracts;
 using Microsoft.TeamFoundation.Build.WebApi;
 
 public class BuildDefinition : IBuildDefinition
 {
     private readonly IPipelinesServiceSettings _settings;
+    private readonly AzureDevOpsSettings _azureDevOpsSettings;
     private readonly BuildDefinitionReference _buildDefinition;
     private readonly List<IBuild> _builds;
 
-    public BuildDefinition(IPipelinesServiceSettings settings, BuildDefinitionReference buildDefinition)
+    public BuildDefinition(IPipelinesServiceSettings settings, AzureDevOpsSettings azureDevOpsSettings, BuildDefinitionReference buildDefinition)
     {
         _settings = settings;
+        _azureDevOpsSettings = azureDevOpsSettings;
         _buildDefinition = buildDefinition;
         _builds = new List<IBuild>();
     }
@@ -58,7 +61,7 @@ public class BuildDefinition : IBuildDefinition
                 project: _buildDefinition.Project.Id.ToString(),
                 branchName: branchToWatch);
 
-            _builds.Add(new Build(build));
+            _builds.Add(new Build(_azureDevOpsSettings, build));
         }
 
         Changed?.Invoke(this, EventArgs.Empty);
