@@ -30,6 +30,7 @@
 		<ProjectReference Include="..\..\Services\Gitlab.Core\Gitlab.Core.csproj" />
 		<ProjectReference Include="..\AzureDevOps.Pipelines.Wpf\AzureDevOps.Pipelines.Wpf.csproj" />
 		<ProjectReference Include="..\AzureDevOps.Releases.Wpf\AzureDevOps.Releases.Wpf.csproj" />
+		<ProjectReference Include="..\Github.PullRequests.Wpf\Github.PullRequests.Wpf.csproj" />
 		<ProjectReference Include="..\Gitlab.MergeRequests.Wpf\Gitlab.MergeRequests.Wpf.csproj" />
 		<ProjectReference Include="..\Gitlab.Pipelines.Wpf\Gitlab.Pipelines.Wpf.csproj" />
 		<ProjectReference Include="..\Wpf.Core\Wpf.Core.csproj" />

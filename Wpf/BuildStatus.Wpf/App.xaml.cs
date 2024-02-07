@@ -17,6 +17,9 @@ using DevOpsUtil.BuildStatus.Wpf.Views;
 using DevOpsUtil.Core.Contracts;
 using DevOpsUtil.Core.Services;
 using DevOpsUtil.Core.Windows.Services;
+using DevOpsUtil.Github.Core.Contracts;
+using DevOpsUtil.Github.Core.Services;
+using DevOpsUtil.Github.PullRequests.Wpf;
 using DevOpsUtil.Gitlab.Core.Contracts;
 using DevOpsUtil.Gitlab.Core.Services;
 using DevOpsUtil.Gitlab.MergeRequests.Wpf;
@@ -84,6 +87,7 @@ public partial class App : PrismApplication
         containerRegistry.Register<IBrowserService, BrowserService>();
         containerRegistry.RegisterSingleton<IAzureDevOpsSettingsService, AzureDevOpsSettingsService>();
         containerRegistry.RegisterSingleton<IGitlabSettingsService, GitlabSettingsService>();
+        containerRegistry.RegisterSingleton<IGithubSettingsService, GithubSettingsService>();
         containerRegistry.RegisterSingleton<ITaskbarIconService, TaskbarIconService>();
 
         // Views - Generic
@@ -107,6 +111,7 @@ public partial class App : PrismApplication
         moduleCatalog.AddModule<AzureDevOpsReleasesModule>();
         moduleCatalog.AddModule<GitlabPipelinesModule>();
         moduleCatalog.AddModule<GitlabMergeRequestsModule>();
+        moduleCatalog.AddModule<GithubPullRequestsModule>();
 
         base.ConfigureModuleCatalog(moduleCatalog);
     }

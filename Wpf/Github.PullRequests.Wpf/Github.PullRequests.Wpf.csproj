@@ -5,15 +5,15 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
-		<RootNamespace>DevOpsUtil.Gitlab.MergeRequests.Wpf</RootNamespace>
+		<RootNamespace>DevOpsUtil.Github.PullRequests.Wpf</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Prism.DryIoc" Version="8.1.97"/>
+		<PackageReference Include="Prism.DryIoc" Version="8.1.97" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Services\Gitlab.MergeRequests\Gitlab.MergeRequests.csproj" />
+		<ProjectReference Include="..\..\Services\Github.PullRequests\Github.PullRequests.csproj" />
 		<ProjectReference Include="..\Wpf.Core\Wpf.Core.csproj" />
 	</ItemGroup>
 
