@@ -8,6 +8,7 @@ query QueryPipelines($rootGroup: ID!, $pipelineRef: String) {
                 id
                 name
                 fullPath
+                archived
 
                 pipelines(ref:$pipelineRef,first:1) {
                     nodes {

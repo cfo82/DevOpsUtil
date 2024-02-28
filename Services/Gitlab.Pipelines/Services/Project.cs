@@ -33,6 +33,8 @@ public class Project : IProject
 
     public bool IsRunning => !IsIgnored && _pipelines.Any(p => p.IsRunning);
 
+    public bool IsArchived => _masterProject.Archived ?? false;
+
     public string Name => _masterProject.Name;
 
     public ImmutableArray<IPipeline> Pipelines => _pipelines.ToImmutableArray();

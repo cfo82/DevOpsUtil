@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 public class MergeRequestService : IMergeRequestService, IRefreshable
 {
+    private readonly GitlabSettings _gitlabSettings;
     private readonly List<IMergeRequest> _mergeRequests;
     private readonly ServiceProvider _services;
     private readonly string _groupPath;
@@ -19,18 +20,18 @@ public class MergeRequestService : IMergeRequestService, IRefreshable
         IGitlabSettingsService gitlabSettingsService,
         IMergeRequestServiceSettings settings)
     {
-        var gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettingsKey);
+        _gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettingsKey);
         _mergeRequests = new List<IMergeRequest>();
-        _groupPath = gitlabSettings.GroupPath;
+        _groupPath = _gitlabSettings.GroupPath;
 
         var serviceCollection = new ServiceCollection();
         serviceCollection
             .AddGitlabClient()
             .ConfigureHttpClient(client =>
             {
-                client.BaseAddress = new Uri(gitlabSettings.BaseAddress + "/api/graphql");
+                client.BaseAddress = new Uri(_gitlabSettings.BaseAddress + "/api/graphql");
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", gitlabSettings.AccessToken);
+                    new AuthenticationHeaderValue("Bearer", _gitlabSettings.AccessToken);
             });
 
         _services = serviceCollection.BuildServiceProvider();
@@ -52,6 +53,11 @@ public class MergeRequestService : IMergeRequestService, IRefreshable
                                       new List<IQueryMergeRequests_Group_Projects_Nodes>())
         {
             if (gitlabProject == null)
+            {
+                continue;
+            }
+
+            if (_gitlabSettings.IgnoreArchived && (gitlabProject.Archived ?? false))
             {
                 continue;
             }

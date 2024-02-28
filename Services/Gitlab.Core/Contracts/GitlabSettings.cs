@@ -18,6 +18,8 @@ public class GitlabSettings
 
     public string UserName { get; set; } = string.Empty;
 
+    public bool IgnoreArchived { get; set; } = false;
+
     public static GitlabSettings[] Load(IConfiguration configuration)
     {
         return configuration.GetSection(Location).Get<GitlabSettings[]>() ??

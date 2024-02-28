@@ -74,6 +74,16 @@ public class PipelinesViewModel : BindableBase
                 return 1;
             }
 
+            if (!a.IsArchived && b.IsArchived)
+            {
+                return -1;
+            }
+
+            if (a.IsArchived && !b.IsArchived)
+            {
+                return 1;
+            }
+
             if (a.Pipelines.Length > 0 && b.Pipelines.Length == 0)
             {
                 return -1;

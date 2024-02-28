@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 public class PipelinesService : IPipelinesService, IRefreshable, IErrorStateProvider
 {
     private readonly IPipelinesServiceSettings _settings;
+    private readonly GitlabSettings _gitlabSettings;
     private readonly List<IProject> _projects;
     private readonly IServiceProvider _services;
     private readonly string _groupPath;
@@ -22,10 +23,10 @@ public class PipelinesService : IPipelinesService, IRefreshable, IErrorStateProv
         IGitlabSettingsService gitlabSettingsService,
         IPipelinesServiceSettings settings)
     {
-        var gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettingsKey);
+        _gitlabSettings = gitlabSettingsService.Get(settings.GitlabSettingsKey);
         _settings = settings;
         _projects = new List<IProject>();
-        _groupPath = gitlabSettings.GroupPath;
+        _groupPath = _gitlabSettings.GroupPath;
         _isRefreshing = false;
 
         var serviceCollection = new ServiceCollection();
@@ -33,9 +34,9 @@ public class PipelinesService : IPipelinesService, IRefreshable, IErrorStateProv
             .AddGitlabClient()
             .ConfigureHttpClient(client =>
             {
-                client.BaseAddress = new Uri(gitlabSettings.BaseAddress + "/api/graphql");
+                client.BaseAddress = new Uri(_gitlabSettings.BaseAddress + "/api/graphql");
                 client.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", gitlabSettings.AccessToken);
+                    new AuthenticationHeaderValue("Bearer", _gitlabSettings.AccessToken);
             });
 
         _services = serviceCollection.BuildServiceProvider();
@@ -75,6 +76,11 @@ public class PipelinesService : IPipelinesService, IRefreshable, IErrorStateProv
                                     new List<IQueryPipelines_Group_Projects_Nodes>())
             {
                 if (masterProject == null)
+                {
+                    continue;
+                }
+
+                if (_gitlabSettings.IgnoreArchived && (masterProject.Archived ?? false))
                 {
                     continue;
                 }

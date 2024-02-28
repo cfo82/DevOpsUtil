@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<RootNamespace>DevOpsUtil.BuildStatus.Wpf</RootNamespace>
+		<ApplicationIcon>Images\AppIcon.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>

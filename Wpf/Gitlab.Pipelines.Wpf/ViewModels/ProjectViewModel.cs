@@ -39,11 +39,13 @@ public class ProjectViewModel : BindableBase
         }
     }
 
-    public bool IsIgnored => Pipelines.Count == 0 || _project.IsIgnored;
+    public bool IsIgnored => _project.IsIgnored;
 
     public bool IsRunning => !IsIgnored && _project.IsRunning;
 
-    public bool WasSuccessful => !IsIgnored && _project.WasSuccessful;
+    public bool WasSuccessful => !IsIgnored && _project.WasSuccessful && !HasFailed;
+
+    public bool IsArchived => _project.IsArchived;
 
     public bool HasFailed
     {
@@ -54,7 +56,7 @@ public class ProjectViewModel : BindableBase
                 return false;
             }
 
-            return _project.HasFailed;
+            return _project.HasFailed || (!IsArchived && Pipelines.Count == 0);
         }
     }
 

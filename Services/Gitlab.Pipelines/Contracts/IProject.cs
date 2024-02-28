@@ -12,6 +12,8 @@ public interface IProject
 
     bool HasFailed { get; }
 
+    bool IsArchived { get; }
+
     string Name { get; }
 
     ImmutableArray<IPipeline> Pipelines { get; }

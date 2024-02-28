@@ -8,7 +8,8 @@
         <Border Background="LightCoral" IsVisible="{Binding HasFailed}" />
         <Border Background="LightGreen" IsVisible="{Binding WasSuccessful}" />
         <Border Background="LightSkyBlue" IsVisible="{Binding IsRunning}" />
-        <Border Background="LightYellow" IsVisible="{Binding IsIgnored}" />
+		<Border Background="LightGray" IsVisible="{Binding IsArchived}" />
+		<Border Background="LightYellow" IsVisible="{Binding IsIgnored}" />
 
         <Grid Margin="4,2, 4, 8">
             <Grid.ColumnDefinitions>
