@@ -26,6 +26,11 @@ public class Pipeline : IPipeline
                 continue;
             }
 
+            if (job.Retried.GetValueOrDefault(false))
+            {
+                continue;
+            }
+
             _jobs.Add(new Job(job));
         }
     }

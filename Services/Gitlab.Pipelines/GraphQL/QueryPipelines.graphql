@@ -24,6 +24,7 @@ query QueryPipelines($rootGroup: ID!, $pipelineRef: String) {
                             nodes {
                                 name
                                 status
+                                retried
                             }
                         }
                     }
